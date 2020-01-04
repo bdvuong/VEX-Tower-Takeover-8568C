@@ -1,7 +1,7 @@
 #include "main.h"
 
 //HELPERS
-void setdrive(int left, int right);
+void setDrive(int left, int right);
 void resetDriveEncoders();
 double avgdriveencoderValue();
 
