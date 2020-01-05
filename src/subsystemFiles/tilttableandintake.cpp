@@ -1,9 +1,9 @@
 #include "main.h"
 
-const double CHUTE_LENGTH // measure chute
-const double CHUTE_SLOPE_RATIO
+const double CHUTE_LENGTH = 50 // measure chute
+const double CHUTE_SLOPE_RATIO =
 int chuteAngle
-int
+
 
 //Helpers
 //chute helper
@@ -17,6 +17,7 @@ void setIntake(int intakePower) {
   intakeLeft = intakePower;
 
 }
+
 //CONTROL FUNCTIONS
 //tilt control
 void setTiltMotor() {

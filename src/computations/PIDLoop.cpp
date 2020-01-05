@@ -35,4 +35,6 @@ int PIDLoop(double Kp, double Ki, double Kd, int units, double EncoderValue) {
 
   if(voltage < -127)
     voltage = -127;
+
+  return voltage;
 }

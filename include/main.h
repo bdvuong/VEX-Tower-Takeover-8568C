@@ -73,10 +73,13 @@ void opcontrol(void);
 
 #ifdef __cplusplus
 #include "subsystemHeaders/drive.hpp"
-#include "subsystemHeaders/intake.hpp"
+#include "subsystemHeaders/tilttableandintake.hpp"
 #include "subsystemHeaders/lift.hpp"
-#include "subsystemHeaders/tilttable.hpp"
 #include "subsystemHeaders/globals.hpp"
+#include "computations/computations.hpp"
+#include "computations/odometry.hpp"
+#include "computations/PIDLoop.hpp"
+
 //#include <iostream>
 #endif
 
