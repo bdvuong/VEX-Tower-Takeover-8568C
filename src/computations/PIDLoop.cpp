@@ -16,7 +16,7 @@ int PIDLoop(double Kp, double Ki, double Kd, int units, double EncoderValue) {
   error = units - EncoderValue;
   pros::lcd::print(0, "error: %f, %f, %f", error, units, EncoderValue);
 
-  //increase
+  //increase the intergral dependin
   integral = integral + error;
 
   if(error == 0)

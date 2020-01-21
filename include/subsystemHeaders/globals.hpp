@@ -12,5 +12,19 @@ extern pros::Motor tiltTable;
 //CONTROLLER
 extern pros::Controller controller;
 
-//MISC
+//Sensors
+extern pros::ADIEncoder trackingX;
+extern pros::ADIEncoder trackingLeft;
+extern pros::ADIEncoder trackingRight;
+
+//driver macros
 void dumpCubes();
+
+//MISC
+float giveangle();
+extern const float INCHESTOTICKS;
+
+//Conversion
+
+#define PI = 3.14159
+#define

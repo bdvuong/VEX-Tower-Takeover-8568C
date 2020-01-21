@@ -12,7 +12,12 @@ pros::Motor tiltTable(16, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER
 //Controller
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-//Driver Functions
+//Sensors
+pros::ADIEncoder trackingX('A', 'B');
+pros::ADIEncoder trackingRight('C', 'D');
+pros::ADIEncoder trackingLeft('G', 'H');
+
+//driver macros
 void dumpCubes() {
   int buttonA = controller.get_digital(pros::E_CONTROLLER_DIGITAL_A);
   if (buttonA == 1) {
@@ -20,29 +25,6 @@ void dumpCubes() {
     setIntake(30);
   }
 }
-
-//auton helpers
-
-
-//autonomous
-void extendChute(int position){
-  pros::lcd::print(3, "tilt angle %f", tiltTable.get_position());
-  if(tiltTable.get_position() < position){
-      setTilt(62);
-  }
-  else if(tiltTable.get_position() > position){
-    setTilt(0);
-    setIntake(127);
-    pros::delay(200);
-
-      }
-
-  else
-  {
-    setTilt(0);
-  }
-}
-
 
 //misc
 float giveangle(){
