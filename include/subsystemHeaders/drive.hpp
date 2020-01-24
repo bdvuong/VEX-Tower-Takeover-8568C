@@ -3,7 +3,7 @@
 //HELPERS
 void setDrive(int left, int right);
 void resetDriveEncoders();
-double avgdriveencoderValue();
+double avgDriveEncoderValue();
 
 //DRIVER CONTROL FUNCTIONS
 void setDriveMotors();

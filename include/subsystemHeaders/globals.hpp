@@ -13,7 +13,7 @@ extern pros::Motor tiltTable;
 extern pros::Controller controller;
 
 //Sensors
-extern pros::ADIEncoder trackingX;
+extern pros::ADIEncoder trackingH;
 extern pros::ADIEncoder trackingLeft;
 extern pros::ADIEncoder trackingRight;
 
@@ -26,5 +26,5 @@ extern const float INCHESTOTICKS;
 
 //Conversion
 
-#define PI = 3.14159
-#define
+#define PI = 3.14159;
+//#define
