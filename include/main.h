@@ -39,7 +39,7 @@
 /**
  * You should add more #includes here
  */
-//#include "okapi/api.hpp"
+#include "okapi/api.hpp"
 //#include "pros/api_legacy.h"
 
 /**
@@ -72,6 +72,7 @@ void opcontrol(void);
 #endif
 
 #ifdef __cplusplus
+#include "subsystemHeaders/autonomous.hpp"
 #include "subsystemHeaders/drive.hpp"
 #include "subsystemHeaders/tilttableandintake.hpp"
 #include "subsystemHeaders/lift.hpp"
