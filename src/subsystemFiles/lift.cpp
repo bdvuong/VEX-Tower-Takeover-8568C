@@ -39,7 +39,8 @@ void liftGoTo(int target, int liftRightEncoder, int liftLeftEncoder) {
     if(liftRightEncoder < target && liftLeftEncoder < target) {
       while(true) {
         setLiftMotors((rightError - encoderError) * kP, (leftError + encoderError) * kP);
-        if(avgLiftEncoder == target){
+        //if(avgLiftEncoder == target){
+        if(abs(avgLiftEncoder - target) < 10){
           break;
         }
         break;
@@ -48,7 +49,8 @@ void liftGoTo(int target, int liftRightEncoder, int liftLeftEncoder) {
     else if(liftRightEncoder > target && liftLeftEncoder > target) {
       while(true) {
         setLiftMotors((-rightError - encoderError) * kP, (-leftError + encoderError) * kP);
-        if(avgLiftEncoder == target){
+        //if(avgLiftEncoder == target){
+          if(abs(avgLiftEncoder - target) < 10){
           break;
         }
         break;
