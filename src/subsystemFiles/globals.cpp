@@ -13,7 +13,7 @@ pros::Motor tiltTable(16, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 //Sensors
-pros::ADIEncoder trackingX('A', 'B');
+pros::ADIEncoder trackingH('A', 'B');
 pros::ADIEncoder trackingRight('C', 'D');
 pros::ADIEncoder trackingLeft('G', 'H');
 
