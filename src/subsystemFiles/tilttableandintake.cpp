@@ -1,8 +1,8 @@
 #include "main.h"
 
-const double CHUTE_LENGTH = 50 // measure chute
-const double CHUTE_SLOPE_RATIO =
-int chuteAngle
+const double CHUTE_LENGTH = 50; // measure chute
+const double CHUTE_SLOPE_RATIO = 0;
+int chuteAngle;
 
 
 //Helpers
