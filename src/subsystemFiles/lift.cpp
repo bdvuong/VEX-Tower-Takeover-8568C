@@ -25,13 +25,36 @@ void setLiftMotors(int rightLiftMotorPower, int leftLiftMotorPower){
 
 
 void liftGoTo(int target, int liftRightEncoder, int liftLeftEncoder) {
-  // int avgLiftEncoder = (liftRightEncoder + liftLeftEncoder) / 2;
-  double kP = .5;
-  int rightError = target - liftRightEncoder;
-  int leftError = target - liftLeftEncoder;
-  int encoderError = liftRightEncoder - liftLeftEncoder;
-  while(liftRightEncoder < target && liftLeftEncoder < target) {
-    setLiftMotors((rightError - encoderError) * kP, (leftError + encoderError) * kP);
+  //P loop to self correct lift so it doesn't lift inconsistently
+  double kP = .5; //arbitrary number, dont think i need this necesarily but idk.
+  int avgLiftEncoder;
+  int rightError;
+  int leftError;
+  int encoderError;
+  while(true) {
+    int avgLiftEncoder = (liftRightEncoder + liftLeftEncoder) / 2;
+    int rightError = target - liftRightEncoder;
+    int leftError = target - liftLeftEncoder;
+    int encoderError = liftRightEncoder - liftLeftEncoder;
+    if(liftRightEncoder < target && liftLeftEncoder < target) {
+      while(true) {
+        setLiftMotors((rightError - encoderError) * kP, (leftError + encoderError) * kP);
+        if(avgLiftEncoder == target){
+          break;
+        }
+        break;
+      }
+    }
+    else if(liftRightEncoder > target && liftLeftEncoder > target) {
+      while(true) {
+        setLiftMotors((-rightError - encoderError) * kP, (-leftError + encoderError) * kP);
+        if(avgLiftEncoder == target){
+          break;
+        }
+        break;
+      }
+      break;
+    }
   }
 }
 
@@ -42,15 +65,12 @@ void setLift(int goalHeight) {
       liftGoTo(baseHeight, liftRightEncoder, liftLeftEncoder);
     }
     case 2:{
-      int target = ;
       liftGoTo(smallTower, liftRightEncoder, liftLeftEncoder);
     }
     case 3:{
-      int target = ;
       liftGoTo(medTower, liftRightEncoder, liftLeftEncoder);
     }
     case 4: {
-      int target = ;
       liftGoTo(tallTower, liftRightEncoder, liftLeftEncoder);
     }
   }
