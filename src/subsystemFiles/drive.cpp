@@ -11,7 +11,7 @@ void resetDriveEncoders() {
   driveRight.tare_position();
 }
 
-double avgdriveencoderValue() {
+double avgDriveEncoderValue() {
   return (fabs(driveLeft.get_position()) + fabs(driveRight.get_position())) / 2;
 }
 
@@ -49,7 +49,7 @@ void translate(int units, int voltage) {
   //reset motor encoders
   resetDriveEncoders();
   //drive forward until units are reached
-  while(avgdriveencoderValue() < abs(units)) {
+  while(avgDriveEncoderValue() < abs(units)) {
     setDrive(voltage * direction, voltage * direction);
     pros::delay(10);
   }
