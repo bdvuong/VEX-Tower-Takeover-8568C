@@ -1,4 +1,9 @@
 #include "main.h"
+#include "math.h"
+
+//Initialize encoder values
+int driveRightEncoder = driveRight.get_position();
+int driveLeftEncoder = driveLeft.get_position();
 
 //HELPERS
 void setDrive(int left, int right) {
@@ -43,13 +48,23 @@ void setDriveMotors() {
 
 
 //Auton Functions
-void translate(int units, int voltage) {
+void translate(int inches) {
+  //initialize voltage
+  int voltage;
   // defines direction based on provided units
-  int direction = abs(units) / units;
+  int direction = abs(inches) / inches;
   //reset motor encoders
   resetDriveEncoders();
+  //convert inches to ticks
+  int units = INCHES_TO_TICKS * inches;
   //drive forward until units are reached
   while(avgDriveEncoderValue() < abs(units)) {
+    //encoder difference
+    int encoderDiff = driveLeftEncoder - driveRightEncoder;
+    int encoderModifier =
+
+    PIDLoop(0, 0, 0, units, driveLeftEncoder)
+
     setDrive(voltage * direction, voltage * direction);
     pros::delay(10);
   }
@@ -60,8 +75,29 @@ void translate(int units, int voltage) {
   setDrive(0, 0);
 }
 
-void turn(int angle, int voltage) {
-  int direction = abs(angle) / angle; // left will give a negative number, right will give a positive
-  double power = angle * TICKS_PER_REV_TORQUE;
 
-}
+//translate function to move robot a set amount of inches, with a built in pid
+// void translate(int dist) {
+//   //reset the motor encoders
+//   resetDriveEncoders();
+//   int driveLastError = 0;
+//
+//   int direction = abs(dist) / dist;
+//
+//   int target = fabs(dist * INCHES_TO_TICKS); //convert distance to encoder ticks
+//   float error = target - abs(driveLeftEncoder);
+//
+//   while(fabs(error) > 0) {
+//
+//     error = target - abs(driveLeftEncoder);
+//
+//     int drivePower =
+//   }
+//
+// }
+//
+// void turn(int angle, int voltage) {
+//   int direction = abs(angle) / angle; // left will give a negative number, right will give a positive
+//   double power = angle * TICKS_PER_REV_TORQUE;
+//
+// }
