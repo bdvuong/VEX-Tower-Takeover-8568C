@@ -25,8 +25,8 @@ float giveangle();
 extern const float INCHESTOTICKS;
 
 //Conversion
-  #define TICKS_PER_REV_TORQUE = 1800
-  #define DEG_CIRCLE = 360.0
-  #define PI = 3.14159
-  #define TICKS_DEG_TORQUE = DEG_CIRCLE / TICKS_PER_REV_TORQUE
-  #define DEG_TO_TICKS = TICKS_PER_REV_TORQUE / DEG_CIRCLE
+#define PI 3.14159
+#define TICKS_PER_REV_TORQUE 1800
+#define DEG_CIRCLE 360.0
+#define TICKS_DEG_TORQUE 360.0 / 1800.0;
+#define DEG_TO_TICKS 1800.0 / 360.0;
