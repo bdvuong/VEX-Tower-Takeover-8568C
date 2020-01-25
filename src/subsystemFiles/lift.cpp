@@ -5,29 +5,30 @@ int liftRightEncoder = liftRight.get_position(); //initialize the lift's right m
 int liftLeftEncoder = liftLeft.get_position(); //initialize the lift's left motor encoder value
 int goalHeight = 0;
 
-// const int NUM_HEIGHTS = 4;
-// int baseHeight = 0;
-// int smallTower = ;
-// int medTower = ;
-// int tallTower = ;
-//
-//
-//
-//
+const int NUM_HEIGHTS = 4;
+int baseHeight = 0 * INCHES_TO_TICKS;
+float smallTower = 18.83 * INCHES_TO_TICKS;
+float medTower = 24.66 * INCHES_TO_TICKS;
+float tallTower = 37.91 * INCHES_TO_TICKS;
+
+
+
+
 // //Helpers
-//
+
 // //Sets lift motor power
 void setLiftMotors(int rightLiftMotorPower, int leftLiftMotorPower){
   liftRight = rightLiftMotorPower;
   liftLeft = leftLiftMotorPower;
 }
+
 int getEncoderValues_lift() {
   int liftRightEncoder = liftRight.get_position();
   int liftLeftEncoder = liftLeft.get_position();
   return liftRightEncoder;
   return liftLeftEncoder;
 }
-//
+
 // void liftGoTo(int target, int liftRightEncoder, int liftLeftEncoder) {
 //   //P loop to self correct lift so it doesn't lift inconsistently
 //   double kP = .5; //arbitrary number, dont think i need this necesarily but idk.
@@ -81,31 +82,25 @@ int getEncoderValues_lift() {
 //     }
 //   }
 // }
-// //Can maybe replace this case with a vector?(I think? It would look something like towerHeights = {not extended, tower1, tower2, tower3})
-//
-//
-//
-//
+// // //Can maybe replace this case with a vector?(I think? It would look something like towerHeights = {not extended, tower1, tower2, tower3})
 //
 // void changeCounter() {
-//   if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1) && goalHeight < NUM_HEIGHTS - 1) {
+//   if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X) && goalHeight < NUM_HEIGHTS - 1) {
 //     goalHeight++;
 //     setLift(goalHeight);
 //   }
-//   else if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2) && goalHeight > 0) {
+//   else if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y) && goalHeight > 0) {
 //     goalHeight--;
 //     setLift(goalHeight);
 //   }
 //
 // }
-//
-
 
 //CONTROL FUNCTIONS
 void setLiftMotors() {
     // lower is R2, want it to out outtake
     // Upper is R1, want it to intake
-    int liftPower = 127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
+    int liftPower = 62 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
     setLiftMotors(liftPower, liftPower);
     giveLiftValues();
 }

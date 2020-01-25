@@ -98,9 +98,10 @@ void translate(int inches) {
 //funtion to turn the bot
 void turn(int angle) {
   int voltage;
-  int direction = abs(angle) / angle; // left will give a negative number, right will give a positive
-  int radius = angle * TICKS_PER_REV_TORQUE;
-  double target = radius * angle;
+  int direction = abs(angle) / angle; // turning left will give a negative number, turning right will give a positive
+  int radius = 6 * INCHES_TO_TICKS;
+  double angleRAD = angle * DEG_TO_RAD;
+  double target = radius * angleRAD;
   resetDriveEncoders();
   while(avgDriveEncoderValue() < fabs(target)) {
     voltage = PIDLoop(0, 0, 0, target, driveLeftEncoder);

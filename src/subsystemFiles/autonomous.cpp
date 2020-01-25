@@ -19,8 +19,8 @@ void extendChute(int position){
 }
 
 void redAlliance() {
-  extendChute(2700);
-  spinIntake();
+  extendChute(2150);
+  setIntake(127);
   //translate(10);
 
 }
