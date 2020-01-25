@@ -21,7 +21,12 @@ void setLiftMotors(int rightLiftMotorPower, int leftLiftMotorPower){
   liftRight = rightLiftMotorPower;
   liftLeft = leftLiftMotorPower;
 }
-
+int getEncoderValues_lift() {
+  int liftRightEncoder = liftRight.get_position();
+  int liftLeftEncoder = liftLeft.get_position();
+  return liftRightEncoder;
+  return liftLeftEncoder;
+}
 //
 // void liftGoTo(int target, int liftRightEncoder, int liftLeftEncoder) {
 //   //P loop to self correct lift so it doesn't lift inconsistently
@@ -94,8 +99,6 @@ void setLiftMotors(int rightLiftMotorPower, int leftLiftMotorPower){
 //
 // }
 //
-//
-//
 
 
 //CONTROL FUNCTIONS
@@ -104,4 +107,5 @@ void setLiftMotors() {
     // Upper is R1, want it to intake
     int liftPower = 127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
     setLiftMotors(liftPower, liftPower);
+    giveLiftValues();
 }
