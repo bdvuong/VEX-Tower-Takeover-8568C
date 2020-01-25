@@ -71,7 +71,7 @@ void competition_initialize() {}
 // figure out if you need to change it for the different corners on the alliances
 
 	void autonomous() {
-		redAlliance();
+	redAlliance();
 	// blueAlliance();
 }
 
