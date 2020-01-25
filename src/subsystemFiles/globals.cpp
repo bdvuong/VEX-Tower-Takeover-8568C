@@ -3,8 +3,8 @@
 //Verify gear set, maybe change ports
 pros::Motor driveRight(10, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_COUNTS); //torque motors
 pros::Motor driveLeft(9, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS); //torque motors
-pros::Motor liftRight(1, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS); //torque motors
-pros::Motor liftLeft(2, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_COUNTS); //torque motors
+pros::Motor liftRight(1, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_COUNTS); //torque motors
+pros::Motor liftLeft(2, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS); //torque motors
 pros::Motor intakeRight(3, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS); //standard gear ratio
 pros::Motor intakeLeft(4, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_COUNTS); //standard gear ratio
 pros::Motor tiltTable(8, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS); //torque motors
@@ -30,10 +30,22 @@ void dumpCubes() {
 
 //misc
 
-float giveTiltPosition(){
+float giveTiltPosition() {
   float position = tiltTable.get_position();
-  pros::lcd::print(2, "position %f", position);
+  pros::lcd::print(5, "position %f", position);
   return position;
 }
+
+//gives lift motor encoder values
+float giveLiftValues() {
+  float right = liftRight.get_position();
+  float left = liftLeft.get_position();
+  pros::lcd::print(3, "Right Encoder %f", right);
+  pros::lcd::print(4, "Lift Encoder %f", left);
+  pros::delay(25);
+  return right;
+  return left;
+}
+
 
 const float INCHESTOTICKS = 1800/(4*3.14159);
