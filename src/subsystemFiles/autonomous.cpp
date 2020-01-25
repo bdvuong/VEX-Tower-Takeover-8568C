@@ -1,8 +1,5 @@
 #include "main.h"
 
-
-
-
 void extendChute(int position){
   pros::lcd::print(3, "tilt angle %f", tiltTable.get_position());
   if(tiltTable.get_position() < position){
@@ -19,4 +16,11 @@ void extendChute(int position){
   {
     setTilt(0);
   }
+}
+
+void redAlliance() {
+  extendChute(2700);
+  spinIntake();
+  //translate(10);
+
 }
