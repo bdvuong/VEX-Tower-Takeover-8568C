@@ -104,5 +104,4 @@ void setLiftMotors() {
     // Upper is R1, want it to intake
     int liftPower = 127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
     setLiftMotors(liftPower, liftPower);
-      }
-    }
+}
