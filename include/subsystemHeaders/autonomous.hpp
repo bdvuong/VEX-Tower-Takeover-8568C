@@ -1,7 +1,5 @@
 #include "main.h"
 
-void redAlliance(){
-
-  void extendChute(int position);
-
-}
+void redAlliance();
+//void blueAlliance();
+void extendChute(int position);
