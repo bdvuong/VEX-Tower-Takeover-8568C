@@ -1,5 +1,4 @@
 #include "main.h"
-#include "math.h"
 
 //Initialize encoder values
 int driveRightEncoder = driveRight.get_position();
@@ -61,9 +60,9 @@ void translate(int inches) {
   while(avgDriveEncoderValue() < abs(units)) {
     //encoder difference
     int encoderDiff = driveLeftEncoder - driveRightEncoder;
-    int encoderModifier =
+    int encoderModifier = direction * encoderDiff * units * .1;
 
-    PIDLoop(0, 0, 0, units, driveLeftEncoder)
+    voltage = PIDLoop(0, 0, 0, units, driveLeftEncoder);
 
     setDrive(voltage * direction, voltage * direction);
     pros::delay(10);
@@ -76,7 +75,7 @@ void translate(int inches) {
 }
 
 
-//translate function to move robot a set amount of inches, with a built in pid
+// //translate function to move robot a set amount of inches, with a built in pid
 // void translate(int dist) {
 //   //reset the motor encoders
 //   resetDriveEncoders();
@@ -95,9 +94,22 @@ void translate(int inches) {
 //   }
 //
 // }
-//
-// void turn(int angle, int voltage) {
-//   int direction = abs(angle) / angle; // left will give a negative number, right will give a positive
-//   double power = angle * TICKS_PER_REV_TORQUE;
-//
-// }
+
+//funtion to turn the bot
+void turn(int angle) {
+  int voltage;
+  int direction = abs(angle) / angle; // left will give a negative number, right will give a positive
+  int radius = angle * TICKS_PER_REV_TORQUE;
+  double target = radius * angle;
+  resetDriveEncoders();
+  while(avgDriveEncoderValue() < fabs(target)) {
+    voltage = PIDLoop(0, 0, 0, target, driveLeftEncoder);
+
+    setDrive(voltage * direction, -voltage * direction);
+    pros::delay(10);
+  }
+  setDrive(-10 * direction, -10 * direction);
+  pros::delay(50);
+  //set drive back to neutral
+  setDrive(0, 0);
+}
