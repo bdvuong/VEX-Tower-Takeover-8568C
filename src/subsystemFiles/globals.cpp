@@ -27,7 +27,7 @@ void dumpCubes() {
 }
 
 //misc
-float giveangle(){
+float giveTiltPosition(){
   float position = tiltTable.get_position();
   pros::lcd::print(2, "position %f", position);
   return position;

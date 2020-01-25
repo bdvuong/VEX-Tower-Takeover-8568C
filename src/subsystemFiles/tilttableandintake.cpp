@@ -39,6 +39,6 @@ void setIntakeMotors() {
 //Autonomous Functions
 
 
-void tiltto(){
+void tiltToAngle(){
 
 }

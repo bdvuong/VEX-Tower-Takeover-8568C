@@ -10,3 +10,4 @@ void setDriveMotors();
 
 //Auton
 void translate(int units, int voltage);
+void turn(int angle, int voltage);

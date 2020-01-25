@@ -59,3 +59,9 @@ void translate(int units, int voltage) {
   //set drive back to neutral
   setDrive(0, 0);
 }
+
+void turn(int angle, int voltage) {
+  int direction = abs(angle) / angle; // left will give a negative number, right will give a positive
+  double power = angle * TICKS_PER_REV_TORQUE;
+
+}
