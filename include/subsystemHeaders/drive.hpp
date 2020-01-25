@@ -9,5 +9,5 @@ double avgDriveEncoderValue();
 void setDriveMotors();
 
 //Auton
-void translate(int units, int voltage);
+void translate(int inches);
 void turn(int angle, int voltage);
