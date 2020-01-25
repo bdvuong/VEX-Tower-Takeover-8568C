@@ -7,3 +7,6 @@ void setIntake(int intakePower);
 //Controls
 void setTiltMotor();
 void setIntakeMotors();
+
+//Auton Functions
+void spinIntake();

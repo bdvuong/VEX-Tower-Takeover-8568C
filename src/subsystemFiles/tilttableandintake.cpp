@@ -25,6 +25,7 @@ void setTiltMotor() {
   // Upper is R1, want it to intake
   int tiltPower = 127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_UP) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN));
   setTilt(tiltPower);
+  void giveTiltPosition();
 
 }
 
@@ -41,4 +42,8 @@ void setIntakeMotors() {
 
 void tiltToAngle(){
 
+}
+
+void spinIntake(){
+  setIntake(127);
 }
