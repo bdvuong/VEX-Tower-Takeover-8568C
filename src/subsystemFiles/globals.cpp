@@ -46,6 +46,3 @@ float giveLiftValues() {
   return right;
   return left;
 }
-
-
-const float INCHESTOTICKS = 1800/(4*3.14159);
