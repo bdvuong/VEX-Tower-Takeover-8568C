@@ -6,10 +6,10 @@ int liftLeftEncoder = liftLeft.get_position(); //initialize the lift's left moto
 int goalHeight = 0;
 
 const int NUM_HEIGHTS = 4;
-int baseHeight = 0 * INCHES_TO_TICKS;
-float smallTower = 18.83 * INCHES_TO_TICKS;
-float medTower = 24.66 * INCHES_TO_TICKS;
-float tallTower = 37.91 * INCHES_TO_TICKS;
+int baseHeight = 0 * INCHES_TICKS;
+float smallTower = 18.83 * INCHES_TICKS;
+float medTower = 24.66 * INCHES_TICKS;
+float tallTower = 37.91 * INCHES_TICKS;
 
 
 

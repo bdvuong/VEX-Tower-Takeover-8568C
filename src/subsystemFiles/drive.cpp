@@ -55,7 +55,7 @@ void translate(int inches) {
   //reset motor encoders
   resetDriveEncoders();
   //convert inches to ticks
-  int units = INCHES_TO_TICKS * inches;
+  int units = INCHES_TICKS * inches;
   //drive forward until units are reached
   while(avgDriveEncoderValue() < abs(units)) {
     //encoder difference
@@ -99,7 +99,7 @@ void translate(int inches) {
 void turn(int angle) {
   int voltage;
   int direction = abs(angle) / angle; // turning left will give a negative number, turning right will give a positive
-  int radius = 6 * INCHES_TO_TICKS;
+  int radius = 6 * INCHES_TICKS;
   double angleRAD = angle * DEG_TO_RAD;
   double target = radius * angleRAD;
   resetDriveEncoders();
