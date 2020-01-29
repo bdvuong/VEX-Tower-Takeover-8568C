@@ -16,7 +16,7 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 pros::ADIEncoder trackingH('A', 'B');
 pros::ADIEncoder trackingRight('C', 'D');
 pros::ADIEncoder trackingLeft('G', 'H');
-
+pros::ADIButton tiltButton('F');
 //driver macros
 
 //this macro makes the bot move backwards slowly and pushes the stack outwards

@@ -16,13 +16,13 @@ extern pros::Controller controller;
 extern pros::ADIEncoder trackingH;
 extern pros::ADIEncoder trackingLeft;
 extern pros::ADIEncoder trackingRight;
+extern pros::ADIButton tiltButton;
 
 //driver macros
 void dumpCubes();
 
 //MISC
 float giveangle();
-extern const float INCHESTOTICKS;
 
 //Conversion
 //#define PI 3.14159
