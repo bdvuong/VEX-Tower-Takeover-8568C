@@ -16,8 +16,13 @@ double radius;
 double angle;
 } polarCoord;
 
+extern position currPosition;
+
+//Helper functions
+polarCoord rectToPolar(double x, double y);
+rectCoord polarToRect(double radius, double angle);
 void updatePosition();
 double getX();
 double getY();
 double getAngleDegrees();
-double getAngle();
+double getAngleRad();
