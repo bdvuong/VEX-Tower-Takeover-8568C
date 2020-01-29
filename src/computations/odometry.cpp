@@ -142,7 +142,7 @@ double getY() {
 }
 
 double getAngleDegrees() {
-  //converts angle to within the unit circle(0, 2pi)
+  //finds a coterminal angle 
   currPosition.angle += PI;
   while(currPosition.angle < 0) {
     currPosition.angle += 2*PI;
@@ -152,8 +152,8 @@ double getAngleDegrees() {
   return currPosition.angle*180/PI;
 }
 
-double getAngle() {
-  return currPosition.angle;
+double getAngleRad() {
+  return currPosition.angle;g
 }
 
 double modulo(double a, double b) {
