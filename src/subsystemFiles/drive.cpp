@@ -96,21 +96,24 @@ void translate(int inches) {
 // }
 
 //funtion to turn the bot
-void turn(int angle) {
-  int voltage;
-  int direction = abs(angle) / angle; // turning left will give a negative number, turning right will give a positive
-  int radius = 6 * INCHES_TICKS;
-  double angleRAD = angle * DEG_TO_RAD;
-  double target = radius * angleRAD;
-  resetDriveEncoders();
-  while(avgDriveEncoderValue() < fabs(target)) {
-    voltage = PIDLoop(0, 0, 0, target, driveLeftEncoder);
+// void turn(int angle) {
+//   int voltage;
+//   int direction = abs(angle) / angle; // turning left will give a negative number, turning right will give a positive
+//   int radius = 6 * INCHES_TICKS;
+//   double angleRAD = angle * DEG_TO_RAD;
+//   double target = radius * angleRAD;
+//   resetDriveEncoders();
+//   while(avgDriveEncoderValue() < fabs(target)) {
+//     voltage = PIDLoop(0, 0, 0, target, driveLeftEncoder);
+//
+//     setDrive(voltage * direction, -voltage * direction);
+//     pros::delay(10);
+//   }
+//   setDrive(-10 * direction, -10 * direction);
+//   pros::delay(50);
+//   //set drive back to neutral
+//   setDrive(0, 0);
+// }
 
-    setDrive(voltage * direction, -voltage * direction);
-    pros::delay(10);
-  }
-  setDrive(-10 * direction, -10 * direction);
-  pros::delay(50);
-  //set drive back to neutral
-  setDrive(0, 0);
-}
+
+void rotate(double angle, double targetOrientation,)
