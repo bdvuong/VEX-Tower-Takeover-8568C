@@ -1,8 +1,15 @@
 #include "main.h"
 
-//Initialize encoder values
+//global variables
+bool targetReached;
+//Initialize motor encoder values
 int driveRightEncoder = driveRight.get_position();
 int driveLeftEncoder = driveLeft.get_position();
+
+//
+double rightEncoder = trackingRight.get_value();
+double leftEncoder = trackingLeft.get_value();
+double horizontalEncoder = trackingH.get_value();
 
 //HELPERS
 void setDrive(int left, int right) {
@@ -10,10 +17,18 @@ void setDrive(int left, int right) {
   driveLeft = left;
 }
 
+void resetEncoderValues() {
+  trackingRight.reset();
+  trackingLeft.reset();
+  trackingH.reset();
+}
+
+/*
 void resetDriveEncoders() {
   driveLeft.tare_position();
   driveRight.tare_position();
 }
+*/
 
 double avgDriveEncoderValue() {
   return (fabs(driveLeft.get_position()) + fabs(driveRight.get_position())) / 2;
@@ -53,7 +68,7 @@ void translate(int inches) {
   // defines direction based on provided units
   int direction = abs(inches) / inches;
   //reset motor encoders
-  resetDriveEncoders();
+  resetEncoderValues()
   //convert inches to ticks
   int units = INCHES_TICKS * inches;
   //drive forward until units are reached
@@ -95,25 +110,25 @@ void translate(int inches) {
 //
 // }
 
-//funtion to turn the bot
-// void turn(int angle) {
-//   int voltage;
-//   int direction = abs(angle) / angle; // turning left will give a negative number, turning right will give a positive
-//   int radius = 6 * INCHES_TICKS;
-//   double angleRAD = angle * DEG_TO_RAD;
-//   double target = radius * angleRAD;
-//   resetDriveEncoders();
-//   while(avgDriveEncoderValue() < fabs(target)) {
-//     voltage = PIDLoop(0, 0, 0, target, driveLeftEncoder);
-//
-//     setDrive(voltage * direction, -voltage * direction);
-//     pros::delay(10);
-//   }
-//   setDrive(-10 * direction, -10 * direction);
-//   pros::delay(50);
-//   //set drive back to neutral
-//   setDrive(0, 0);
-// }
+//funtion to turn the bot on a point, want to eventually figure out how to turn and drive at the same time
+void rotate(int targetAngle) {
 
 
-void rotate(double angle, double targetOrientation,)
+  int voltage;
+  int direction = abs(targetAngle) / targetAngle; // turning left will give a positive number, turning right will give a negative
+  int radius = 6 * INCHES_TICKS;
+  double angleRAD = targetAngle * DEG_TO_RAD;
+  double target = radius * angleRAD;
+  resetEncoderValues();
+  //if reseting position this will initiate a rotation from the current orientation of the robot
+  while(getAngleRad() < fabs(targetAngle)) {
+    voltage = PIDLoop(0, 0, 0, targetAngle, trackingL);
+
+    setDrive(voltage * direction, -voltage * direction);
+    pros::delay(10);
+  }
+  setDrive(-10 * direction, -10 * direction);
+  pros::delay(50);
+  //set drive back to neutral
+  setDrive(0, 0);
+}
