@@ -1,7 +1,9 @@
 #include "main.h"
 
 //Helpers
-void setLift(int goalHeight);
+void limitSwitchPressed();
+//void setLift(int goalHeight);
+void setLift(int rightLiftMotorPower, int leftLiftMotorPower);
 void liftGoTo(int target, int liftRightEncoder, int liftLeftEncoder);
 void changeCounter();
 int getEncoderValues_lift();

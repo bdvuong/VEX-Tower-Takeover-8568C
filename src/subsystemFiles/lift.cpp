@@ -4,20 +4,28 @@
 int liftRightEncoder = liftRight.get_position(); //initialize the lift's right motor encoder value
 int liftLeftEncoder = liftLeft.get_position(); //initialize the lift's left motor encoder value
 int goalHeight = 0;
+int maxHeight = 2000; //set max height lift can go to lower the chances of gears slipping
+bool buttonPressed = limitSwitch.get_new_press();
 
 const int NUM_HEIGHTS = 4;
-int baseHeight = 0 * INCHES_TICKS;
+//all tower heights should be in encoder units
+int baseHeight = 0;
 float smallTower = 18.83 * INCHES_TICKS;
 float medTower = 24.66 * INCHES_TICKS;
 float tallTower = 37.91 * INCHES_TICKS;
 
+//Helpers
+void limitSwitchPressed() {
+  if(buttonPressed == 1) {
+  liftLeft.tare_position();
+  liftRight.tare_position();
+  setLift(0, 0);
+  }
 
+}
 
-
-// //Helpers
-
-// //Sets lift motor power
-void setLiftMotors(int rightLiftMotorPower, int leftLiftMotorPower){
+//Sets lift motor power
+void setLift(int rightLiftMotorPower, int leftLiftMotorPower){
   liftRight = rightLiftMotorPower;
   liftLeft = leftLiftMotorPower;
 }
@@ -101,6 +109,6 @@ void setLiftMotors() {
     // lower is R2, want it to out outtake
     // Upper is R1, want it to intake
     int liftPower = 62 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
-    setLiftMotors(liftPower, liftPower);
+    setLift(liftPower, liftPower);
     giveLiftValues();
 }
