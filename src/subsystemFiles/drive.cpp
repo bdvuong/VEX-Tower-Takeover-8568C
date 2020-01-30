@@ -68,7 +68,7 @@ void translate(int inches) {
   // defines direction based on provided units
   int direction = abs(inches) / inches;
   //reset motor encoders
-  resetEncoderValues()
+  resetEncoderValues();
   //convert inches to ticks
   int units = INCHES_TICKS * inches;
   //drive forward until units are reached

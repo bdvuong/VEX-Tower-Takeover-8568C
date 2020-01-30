@@ -162,7 +162,3 @@ double modulo(double a, double b) {
   }
   return a;
 }
-
-void resetEncoderValues() {
-  trackingRight.reset();
-}
