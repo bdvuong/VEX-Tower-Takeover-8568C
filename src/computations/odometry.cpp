@@ -142,7 +142,7 @@ double getY() {
 }
 
 double getAngleDegrees() {
-  //finds a coterminal angle 
+  //finds a coterminal angle
   currPosition.angle += PI;
   while(currPosition.angle < 0) {
     currPosition.angle += 2*PI;
@@ -153,7 +153,7 @@ double getAngleDegrees() {
 }
 
 double getAngleRad() {
-  return currPosition.angle;g
+  return currPosition.angle;
 }
 
 double modulo(double a, double b) {
@@ -161,4 +161,8 @@ double modulo(double a, double b) {
     a -= b;
   }
   return a;
+}
+
+void resetEncoderValues() {
+  trackingRight.reset();
 }
