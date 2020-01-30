@@ -16,7 +16,7 @@ extern pros::Controller controller;
 extern pros::ADIEncoder trackingH;
 extern pros::ADIEncoder trackingLeft;
 extern pros::ADIEncoder trackingRight;
-extern pros::ADIButton tiltButton;
+extern pros::ADIButton limitSwitch;
 
 //driver macros
 void dumpCubes();
