@@ -29,7 +29,7 @@ double lastHorizontalPosition;
 
 //angle things
 double angle;
-double deltaTheta;
+double deltaAngle;
 double lastAngle;
 double thetaM;
 double initAngle = 0.0;
@@ -93,22 +93,22 @@ void updatePosition() {
    angle = initAngle + (deltaLr - deltaRr) / (LTRACKING_CENTER + RTRACKING_CENTER);
 
    //step 6: calculate the change in angle
-   deltaTheta = angle - lastAngle;
-   deltaHorizontaltest = deltaHorizontal - HTRACKING_CENTER * deltaTheta;
+   deltaAngle = angle - lastAngle;
+   deltaHorizontaltest = deltaHorizontal - HTRACKING_CENTER * deltaAngle;
 
-   //step 7: if the change in angle is 0, calculate the local offset
-   if (deltaTheta == 0) {
+   //step 7: if the change in angle is 0, calculate the local offset, change of the horizontal and one of the vertical tracking wheels
+   if (deltaAngle == 0) {
      deltaX = deltaHorizontal;
      deltaY = deltaRight;
    }
-   //step 8: otherwise calulate the local offset
+   //step 8: otherwise calulate the local offset using trig
    else {
-     deltaX = (2*sin(deltaTheta / 2)) * (deltaHorizontal / deltaTheta + HTRACKING_CENTER);
-     deltaY = (2*sin(deltaTheta / 2)) * (deltaHorizontal / deltaTheta + RTRACKING_CENTER);
+     deltaX = (2*sin(deltaAngle / 2)) * (deltaHorizontal / deltaAngle + HTRACKING_CENTER);
+     deltaY = (2*sin(deltaAngle / 2)) * (deltaHorizontal / deltaAngle + RTRACKING_CENTER);
    }
 
    //step 9: calculate the average orientation
-   thetaM = angle + deltaTheta/2;
+   thetaM = angle + deltaAngle/2;
 
    //step 10: calculate the global offset by converting existing Cartesian/rectangular coordinates to polar coordinates, changing the angle then converting back
    theta = atan2f(deltaY, deltaX); //finds the angle
@@ -141,19 +141,19 @@ double getY() {
   return currPosition.yPosition;
 }
 
+double getAngleRad() {
+  return currPosition.angle;
+}
+
 double getAngleDegrees() {
   //finds a coterminal angle
   currPosition.angle += PI;
   while(currPosition.angle < 0) {
     currPosition.angle += 2*PI;
   }
-  currPosition.angle = modulo(currPosition.angle, 2*PI);
+  currPosition.angle = modulo(currPosition.angle, 2 * PI);
   currPosition.angle -= PI;
   return currPosition.angle*180/PI;
-}
-
-double getAngleRad() {
-  return currPosition.angle;
 }
 
 double modulo(double a, double b) {
