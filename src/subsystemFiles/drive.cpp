@@ -6,10 +6,7 @@ bool targetReached;
 int driveRightEncoder = driveRight.get_position();
 int driveLeftEncoder = driveLeft.get_position();
 
-//
-double rightEncoder = trackingRight.get_value();
-double leftEncoder = trackingLeft.get_value();
-double horizontalEncoder = trackingH.get_value();
+trackingEncoderValues driveEncoders;
 
 //HELPERS
 void setDrive(int left, int right) {
@@ -62,15 +59,15 @@ void setDriveMotors() {
 
 
 //Auton Functions
-void translate(int inches) {
+void translate(int targetPosition) {
   //initialize voltage
   int voltage;
   // defines direction based on provided units
-  int direction = abs(inches) / inches;
+  int direction = abs(targetPosition) / targetPosition;
   //reset motor encoders
   resetEncoderValues();
   //convert inches to ticks
-  int units = INCHES_TICKS * inches;
+  int units = INCHES_TICKS * targetPosition;
   //drive forward until units are reached
   while(avgDriveEncoderValue() < abs(units)) {
     //encoder difference
@@ -89,31 +86,8 @@ void translate(int inches) {
   setDrive(0, 0);
 }
 
-
-// //translate function to move robot a set amount of inches, with a built in pid
-// void translate(int dist) {
-//   //reset the motor encoders
-//   resetDriveEncoders();
-//   int driveLastError = 0;
-//
-//   int direction = abs(dist) / dist;
-//
-//   int target = fabs(dist * INCHES_TO_TICKS); //convert distance to encoder ticks
-//   float error = target - abs(driveLeftEncoder);
-//
-//   while(fabs(error) > 0) {
-//
-//     error = target - abs(driveLeftEncoder);
-//
-//     int drivePower =
-//   }
-//
-// }
-
 //funtion to turn the bot on a point, want to eventually figure out how to turn and drive at the same time
 void rotate(int targetAngle) {
-
-
   int voltage;
   int direction = abs(targetAngle) / targetAngle; // turning left will give a positive number, turning right will give a negative
   int radius = 6 * INCHES_TICKS;
@@ -121,8 +95,8 @@ void rotate(int targetAngle) {
   double target = radius * angleRAD;
   resetEncoderValues();
   //if reseting position this will initiate a rotation from the current orientation of the robot
-  while(getAngleRad() < fabs(targetAngle)) {
-    voltage = PIDLoop(0, 0, 0, targetAngle, trackingL);
+  while(getAngleRad() < fabs(angleRAD)) {
+    voltage = PIDLoop(0, 0, 0, angleRAD, driveEncoders.horizontalEncoder);
 
     setDrive(voltage * direction, -voltage * direction);
     pros::delay(10);
