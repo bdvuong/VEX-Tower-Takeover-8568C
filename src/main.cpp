@@ -97,7 +97,8 @@ void opcontrol() {
     setIntakeMotors();
     //lift control
 		setLiftMotors();
-    //tilt table control
+		//setAutoLift();
+		//tilt table control
 		setTiltMotor();
 		//autonomous cube drop for driver control
 		dumpCubes();

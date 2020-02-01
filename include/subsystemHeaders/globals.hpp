@@ -22,7 +22,7 @@ extern pros::ADIButton limitSwitch;
 void dumpCubes();
 
 //MISC
-float giveangle();
+float giveTiltPosition();
 
 //Conversion
 //#define PI 3.14159
