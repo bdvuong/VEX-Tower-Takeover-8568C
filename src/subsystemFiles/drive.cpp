@@ -28,7 +28,7 @@ void resetDriveEncoders() {
 */
 
 double avgDriveEncoderValue() {
-  return (fabs(driveLeft.get_position()) + fabs(driveRight.get_position())) / 2;
+  return (fabs(driveRightEncoder + fabs(driveLeftEncoder))) / 2;
 }
 
 //DRIVER CONTROL FUNCTIONS
@@ -59,7 +59,7 @@ void setDriveMotors() {
 
 
 //Auton Functions
-void translate(int targetPosition) {
+void translate(int targetPosition) { //set target in inches
   //initialize voltage
   int voltage;
   // defines direction based on provided units
@@ -68,20 +68,21 @@ void translate(int targetPosition) {
   resetEncoderValues();
   //convert inches to ticks
   int units = INCHES_TICKS * targetPosition;
-  //drive forward until units are reached
-  while(avgDriveEncoderValue() < abs(units)) {
-    //encoder difference
-    int encoderDiff = driveLeftEncoder - driveRightEncoder;
-    int encoderModifier = direction * encoderDiff * units * .1;
+  //compare the average of the encoders to the desired units, then drive forward until units are reached
+  //while(avgDriveEncoderValue() < abs(units)) {
+  //encoder difference
+  int encoderDiff = driveLeftEncoder - driveRightEncoder;
+  int encoderModifier = direction * encoderDiff * units * .1;
 
-    voltage = PIDLoop(0, 0, 0, units, driveLeftEncoder);
-
-    setDrive(voltage * direction, voltage * direction);
-    pros::delay(10);
-  }
+  voltage = PIDLoop(.1, 0, 0, units, driveLeftEncoder);
+  driveRight.move_absolute(units, voltage * direction);
+  driveLeft.move_absolute(units, voltage * direction);
+    //setDrive(voltage * direction, voltage * direction);
+  pros::delay(10);
+  //}
   //brief brake
-   setDrive(-10 * direction, -10 * direction);
-   pros::delay(50);
+  setDrive(-10 * direction, -10 * direction);
+  pros::delay(50);
   //set drive back to neutral
   setDrive(0, 0);
 }
@@ -95,12 +96,13 @@ void rotate(int targetAngle) {
   double target = radius * angleRAD;
   resetEncoderValues();
   //if reseting position this will initiate a rotation from the current orientation of the robot
-  while(getAngleRad() < fabs(angleRAD)) {
-    voltage = PIDLoop(0, 0, 0, angleRAD, driveEncoders.horizontalEncoder);
-
-    setDrive(voltage * direction, -voltage * direction);
-    pros::delay(10);
-  }
+  //while(abs(driveLeftEncoder) < fabs(target)) {
+  voltage = PIDLoop(.1, 0, 0, target, driveLeftEncoder);
+  driveLeft.move_absolute(target, voltage * direction);
+  driveRight.move_absolute(target, -voltage * direction);
+  //setDrive(voltage * direction, -voltage * direction);
+  pros::delay(10);
+  //}
   setDrive(-10 * direction, -10 * direction);
   pros::delay(50);
   //set drive back to neutral

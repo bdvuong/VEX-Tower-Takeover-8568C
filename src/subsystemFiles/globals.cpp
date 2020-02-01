@@ -16,7 +16,7 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 pros::ADIEncoder trackingH('A', 'B');
 pros::ADIEncoder trackingRight('C', 'D');
 pros::ADIEncoder trackingLeft('G', 'H');
-pros::ADIButton tiltButton('F');
+pros::ADIButton limitSwitch('F');
 //driver macros
 
 //this macro makes the bot move backwards slowly and pushes the stack outwards
@@ -37,6 +37,7 @@ float giveTiltPosition() {
 }
 
 //gives lift motor encoder values
+/*
 float giveLiftValues() {
   float right = liftRight.get_position();
   float left = liftLeft.get_position();
@@ -46,3 +47,4 @@ float giveLiftValues() {
   return right;
   return left;
 }
+*/

@@ -145,6 +145,7 @@ double getAngleRad() {
   return currPosition.angle;
 }
 
+/*
 double getAngleDegrees() {
   //finds a coterminal angle
   currPosition.angle += PI;
@@ -155,6 +156,7 @@ double getAngleDegrees() {
   currPosition.angle -= PI;
   return currPosition.angle*180/PI;
 }
+*/
 
 double modulo(double a, double b) {
   while(a > b) {
