@@ -6,6 +6,8 @@ bool targetReached;
 int driveRightEncoder = driveRight.get_position();
 int driveLeftEncoder = driveLeft.get_position();
 
+
+
 trackingEncoderValues driveEncoders;
 
 //HELPERS
@@ -74,9 +76,10 @@ void translate(int targetPosition) { //set target in inches
     int encoderDiff = driveLeftEncoder - driveRightEncoder;
     int encoderModifier = direction * encoderDiff * units * .1;
 
-    voltage = PIDLoop(0, 0, 0, units, driveLeftEncoder);
-
-    setDrive(voltage * direction, voltage * direction);
+    PIDLoop(.1, 0, 0, units, driveLeftEncoder);
+    driveLeft.move_absolute(units, voltage * direction);
+    driveRight.move_absolute(units, voltage * direction);
+    //setDrive(voltage * direction, voltage * direction);
     pros::delay(10);
   }
   //brief brake
@@ -96,7 +99,7 @@ void rotate(int targetAngle) {
   resetEncoderValues();
   //if reseting position this will initiate a rotation from the current orientation of the robot
   while(getAngleRad() < fabs(angleRAD)) {
-    voltage = PIDLoop(0, 0, 0, angleRAD, driveEncoders.horizontalEncoder);
+    voltage = PIDLoop(0, 0, 0, angleRAD, driveLeftEncoder);
 
     setDrive(voltage * direction, -voltage * direction);
     pros::delay(10);
