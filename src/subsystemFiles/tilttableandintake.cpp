@@ -26,27 +26,15 @@ void setIntake(int intakePower) {
 void setTiltMotor() {
   // lower is R2, want it to out outtake
   // Upper is R1, want it to
-<<<<<<< HEAD
   //sgiveTiltPosition();
   //while(tiltEncoder != MAX_CHUTE_ANGLE || tiltEncoder < MAX_CHUTE_ANGLE) {
-=======
-  giveTiltPosition();
-  while(tiltEncoder != MAX_CHUTE_ANGLE || tiltEncoder < MAX_CHUTE_ANGLE) {
->>>>>>> a7ff9c6c8cf5862402a00763fcebae5712d4b1c5
     int tiltPower = 127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_UP) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN));
     setTilt(tiltPower);
   //}
   //while(tiltEncoder >= MAX_CHUTE_ANGLE){
     //setTilt(0);
   }
-<<<<<<< HEAD
 //}
-=======
-  while(tiltEncoder >= MAX_CHUTE_ANGLE){
-    setTilt(0);
-  }
-}
->>>>>>> a7ff9c6c8cf5862402a00763fcebae5712d4b1c5
 
 //intake control
 void setIntakeMotors() {
