@@ -28,7 +28,7 @@ void resetDriveEncoders() {
 */
 
 double avgDriveEncoderValue() {
-  return (fabs(driveLeft.get_position()) + fabs(driveRight.get_position())) / 2;
+  return (fabs(driveRightEncoder + fabs(driveLeftEncoder))) / 2;
 }
 
 //DRIVER CONTROL FUNCTIONS
@@ -59,7 +59,7 @@ void setDriveMotors() {
 
 
 //Auton Functions
-void translate(int targetPosition) {
+void translate(int targetPosition) { //set target in inches
   //initialize voltage
   int voltage;
   // defines direction based on provided units
@@ -68,7 +68,7 @@ void translate(int targetPosition) {
   resetEncoderValues();
   //convert inches to ticks
   int units = INCHES_TICKS * targetPosition;
-  //drive forward until units are reached
+  //compare the average of the encoders to the desired units, then drive forward until units are reached
   while(avgDriveEncoderValue() < abs(units)) {
     //encoder difference
     int encoderDiff = driveLeftEncoder - driveRightEncoder;
