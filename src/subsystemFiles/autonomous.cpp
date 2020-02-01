@@ -21,6 +21,9 @@ void extendChute(int position){
 void redAlliance() {
   extendChute(2150);
   setIntake(127);
+  pros::delay(500);
+  translate(5);
+  translate(-5);
   //translate(10);
 
 }
