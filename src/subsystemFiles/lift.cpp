@@ -110,7 +110,6 @@ void changeCounter() {
   goalHeight += (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1) - controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2));
   printf("im in the counter");
   liftToGoal(goalHeight);
-/*
   if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) && goalHeight < NUM_HEIGHTS - 1) {
     goalHeight++;
     liftToGoal(goalHeight);
@@ -121,7 +120,6 @@ void changeCounter() {
     liftToGoal(goalHeight);
     pros::lcd::print(6, "goalHeight = %i", goalHeight);
   }
-*/
 }
 
 
@@ -129,7 +127,8 @@ void changeCounter() {
 void setLiftMotors() {
     // Upper is R1, want lift to go up when pressing
     // lower is R2, want lift to go down when pressing
-    int liftPower = 75 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) - 75 * controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
+    changeCounter();
+    int liftPower = 75 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_X) - 75 * controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y));
     setLift(liftPower, liftPower);
     //giveLiftValues();
 }
