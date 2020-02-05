@@ -21,12 +21,6 @@ void extendChute(int position){
 void redAlliance() {
   extendChute(2150);
   setIntake(127);
-  translate(2);
+  //translate(10);
 
-}
-
-void setAutonomousButton() {
-  while(controller.get_digital(pros::E_CONTROLLER_DIGITAL_X) == 1) {
-    redAlliance();
-  }
 }

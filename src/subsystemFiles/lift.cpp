@@ -130,14 +130,12 @@ void changeCounter() {
 void setLiftMotors() {
     // lower is R2, want it to out outtake
     // Upper is R1, want it to intake
-    int liftPower = 62 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
+    int liftPower = 62 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_X) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y));
     setLift(liftPower, liftPower);
     //giveLiftValues();
 }
 
-/*
 void setAutoLift() {
   int counter = counter + (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1) - controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2));
   liftToGoal(counter);
 }
-*/

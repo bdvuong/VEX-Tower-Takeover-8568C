@@ -37,7 +37,7 @@ float giveTiltPosition() {
 }
 
 //gives lift motor encoder values
-
+/*
 float giveLiftValues() {
   float right = liftRight.get_position();
   float left = liftLeft.get_position();
@@ -47,3 +47,4 @@ float giveLiftValues() {
   return right;
   return left;
 }
+*/

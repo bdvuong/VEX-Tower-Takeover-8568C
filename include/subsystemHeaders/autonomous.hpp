@@ -3,4 +3,3 @@
 void redAlliance();
 //void blueAlliance();
 void extendChute(int position);
-void setAutonomousButton();
