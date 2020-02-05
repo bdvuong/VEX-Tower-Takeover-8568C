@@ -1,4 +1,4 @@
-#include "main.h"
+ #include "main.h"
 
 //Global Variables
 int liftRightEncoder = liftRight.get_position(); //initialize the lift's right motor encoder value
@@ -22,7 +22,6 @@ void limitSwitchPressed() {
     liftRight.tare_position();
     setLift(0, 0);
   }
-
 }
 
 //Sets lift motor power
@@ -111,7 +110,6 @@ void changeCounter() {
   goalHeight += (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1) - controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2));
   printf("im in the counter");
   liftToGoal(goalHeight);
-/*
   if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) && goalHeight < NUM_HEIGHTS - 1) {
     goalHeight++;
     liftToGoal(goalHeight);
@@ -122,20 +120,22 @@ void changeCounter() {
     liftToGoal(goalHeight);
     pros::lcd::print(6, "goalHeight = %i", goalHeight);
   }
-*/
 }
 
 
 //CONTROL FUNCTIONS
 void setLiftMotors() {
-    // lower is R2, want it to out outtake
-    // Upper is R1, want it to intake
-    int liftPower = 62 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_X) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y));
+    // Upper is R1, want lift to go up when pressing
+    // lower is R2, want lift to go down when pressing
+    changeCounter();
+    int liftPower = 75 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_X) - 75 * controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y));
     setLift(liftPower, liftPower);
     //giveLiftValues();
 }
 
+/*
 void setAutoLift() {
   int counter = counter + (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1) - controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2));
   liftToGoal(counter);
 }
+*/
