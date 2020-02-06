@@ -1,0 +1,1 @@
+{"py/object": "pros.conductor.templates.external_template.ExternalTemplate", "py/state": {"metadata": {}, "name": "odomDebug", "supported_kernels": "^3.1.7-commit.46.3806d04", "system_files": ["include/odomDebug/odomDebug.hpp", "firmware/odomDebug.a"], "target": "v5", "user_files": [], "version": "1.1.1"}}
